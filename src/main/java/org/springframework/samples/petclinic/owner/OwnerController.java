@@ -71,8 +71,7 @@ class OwnerController {
 	public String processCreationForm(@Valid Owner owner, BindingResult result) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-		}
-		else {
+		} else {
 			this.owners.save(owner);
 			return "redirect:/owners/" + owner.getId();
 		}
@@ -100,13 +99,11 @@ class OwnerController {
 			// no owners found
 			result.rejectValue("lastName", "notFound", "not found");
 			return "owners/findOwners";
-		}
-		else if (ownersResults.getTotalElements() == 1) {
+		} else if (ownersResults.getTotalElements() == 1) {
 			// 1 owner found
 			owner = ownersResults.iterator().next();
 			return "redirect:/owners/" + owner.getId();
-		}
-		else {
+		} else {
 			// multiple owners found
 			lastName = owner.getLastName();
 			return addPaginationModel(page, model, lastName, ownersResults);
@@ -143,8 +140,7 @@ class OwnerController {
 			@PathVariable("ownerId") int ownerId) {
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
-		}
-		else {
+		} else {
 			owner.setId(ownerId);
 			this.owners.save(owner);
 			return "redirect:/owners/{ownerId}";
@@ -153,6 +149,7 @@ class OwnerController {
 
 	/**
 	 * Custom handler for displaying an owner.
+	 * 
 	 * @param ownerId the ID of the owner to display
 	 * @return a ModelMap with the model attributes for the view
 	 */
